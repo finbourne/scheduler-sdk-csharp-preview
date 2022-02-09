@@ -1,0 +1,5380 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FINBOURNE Scheduler API",
+    "termsOfService": "https://www.finbourne.com/legal/terms-conditions",
+    "contact": {
+      "name": "FINBOURNE Technology",
+      "url": "https://www.finbourne.com",
+      "email": "info@finbourne.com"
+    },
+    "version": "0.0.489",
+    "x-logo": {
+      "url": "https://www.lusid.com/app/assets/logo_white.png",
+      "backgroundColor": "#415464"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.lusid.com/scheduler2"
+    }
+  ],
+  "paths": {
+    "/api/images": {
+      "post": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs",
+        "description": "Every image must have at least one tag",
+        "operationId": "UploadImage",
+        "requestBody": {
+          "description": "Request to upload image",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadImageRequest"
+              },
+              "example": {
+  "imageName": "example-image-name:0.0.1"
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadImageRequest"
+              },
+              "example": {
+  "imageName": "example-image-name:0.0.1"
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadImageRequest"
+              },
+              "example": {
+  "imageName": "example-image-name:0.0.1"
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadImageRequest"
+              },
+              "example": {
+  "imageName": "example-image-name:0.0.1"
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadImageInstructions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/images/repository": {
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] ListRepositories: List all repositories",
+        "operationId": "ListRepositories",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
+              "type": "string",
+              "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "When paginating, skip this number of results.",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 0,
+              "type": "integer",
+              "description": "When paginating, skip this number of results.",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+              "format": "int32",
+              "default": 2000,
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set.",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 0,
+              "type": "string",
+              "description": "Expression to filter the result set.",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfRepository"
+                },
+                "example": {
+  "values": [
+    {
+      "name": "ExampleName",
+      "creationTime": "2013-02-01T12:34:21.0000000+00:00",
+      "lastUpdate": "0001-01-01T00:00:00.0000000+00:00",
+      "pullCount": 6631,
+      "imageCount": 34,
+      "images": {
+        "relation": "images",
+        "href": "api/images/repository/ExampleName",
+        "description": "Get all image versions",
+        "method": "GET"
+      },
+      "links": [
+        {
+          "relation": "images",
+          "href": "api/images/repository/ExampleName",
+          "description": "Get all image versions",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "links": []
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/images/repository/{name}": {
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] ListImages: List all images in a Repository",
+        "operationId": "ListImages",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the Repository",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The name of the Repository",
+              "nullable": true
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
+              "type": "string",
+              "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "When paginating, skip this number of results.",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 0,
+              "type": "integer",
+              "description": "When paginating, skip this number of results.",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+              "format": "int32",
+              "default": 2000,
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set.",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 0,
+              "type": "string",
+              "description": "Expression to filter the result set.",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfImageSummary"
+                },
+                "example": {
+  "values": [
+    {
+      "name": "ExampleName",
+      "pushTime": "2020-09-12T12:34:12.0000000+00:00",
+      "pullTime": "2020-09-12T12:45:15.0000000+00:00",
+      "digest": "sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff",
+      "size": 56825012,
+      "tags": [
+        {
+          "name": "latest",
+          "pullTime": "0001-01-01T00:00:00.0000000+00:00",
+          "pushTime": "0001-01-01T00:00:00.0000000+00:00",
+          "signed": false,
+          "immutable": false
+        },
+        {
+          "name": "0.61",
+          "pullTime": "0001-01-01T00:00:00.0000000+00:00",
+          "pushTime": "0001-01-01T00:00:00.0000000+00:00",
+          "signed": false,
+          "immutable": false
+        }
+      ],
+      "scanSummary": {
+        "fixable": 1,
+        "total": 1,
+        "critical": 0,
+        "high": 1,
+        "medium": 0,
+        "low": 0,
+        "negligible": 0,
+        "unknown": 0
+      }
+    }
+  ],
+  "links": []
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/images/{name}": {
+      "delete": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] DeleteImage: Delete an image from Harbor",
+        "operationId": "DeleteImage",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest,0.1,0.2\"",
+            "required": true,
+            "schema": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*:[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*$",
+              "type": "string",
+              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest,0.1,0.2\""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No image with this name and tag exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] GetImage: Get an image metadata from Harbor",
+        "operationId": "GetImage",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\"",
+            "required": true,
+            "schema": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*:[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*$",
+              "type": "string",
+              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Image"
+                },
+                "example": {
+  "name": "ExampleName",
+  "pushTime": "2020-09-12T12:34:12.0000000+00:00",
+  "pullTime": "2020-09-12T12:45:15.0000000+00:00",
+  "digest": "sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff",
+  "size": 56825012,
+  "tags": [
+    {
+      "name": "latest",
+      "pullTime": "0001-01-01T00:00:00.0000000+00:00",
+      "pushTime": "0001-01-01T00:00:00.0000000+00:00",
+      "signed": false,
+      "immutable": false
+    },
+    {
+      "name": "0.61",
+      "pullTime": "0001-01-01T00:00:00.0000000+00:00",
+      "pushTime": "0001-01-01T00:00:00.0000000+00:00",
+      "signed": false,
+      "immutable": false
+    }
+  ],
+  "scanReport": {
+    "severity": "Critical",
+    "status": "Success",
+    "startTime": "2020-09-13T02:24:12.0000000+00:00",
+    "endTime": "2020-09-13T02:24:42.0000000+00:00",
+    "scanDuration": 30,
+    "summary": {
+      "fixable": 1,
+      "total": 1,
+      "critical": 0,
+      "high": 1,
+      "medium": 0,
+      "low": 0,
+      "negligible": 0,
+      "unknown": 0
+    },
+    "vulnerabilities": [
+      {
+        "name": "CVE-2012-113462",
+        "package": "libdin",
+        "version": "1.33-1",
+        "fixVersion": "1.33-2",
+        "severity": "High",
+        "description": "There is an overflow bug",
+        "links": [
+          "https://security-tracking-website.com"
+        ]
+      }
+    ]
+  }
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/images/{name}/contents": {
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "[EXPERIMENTAL] DownloadImage: Download the file from Harbor",
+        "operationId": "DownloadImage",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\"",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] ListJobs: List the available jobs",
+        "operationId": "ListJobs",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
+              "type": "string",
+              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "When paginating, skip this number of results.",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 0,
+              "type": "integer",
+              "description": "When paginating, skip this number of results.",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+              "format": "int32",
+              "default": 2000,
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set.",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 0,
+              "type": "string",
+              "description": "Expression to filter the result set.",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfJobDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] CreateJob: Create a new job",
+        "operationId": "CreateJob",
+        "requestBody": {
+          "description": "The request to create a new job",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "imageName": "alpine",
+  "imageTag": "latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "imageName": "alpine",
+  "imageTag": "latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "imageName": "alpine",
+  "imageTag": "latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "imageName": "alpine",
+  "imageTag": "latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDefinition"
+                },
+                "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "dockerImage": "alpine:latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/history": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] GetHistory: Get the history of job runs",
+        "operationId": "GetHistory",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
+              "type": "string",
+              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "This field is obsolete, the value of this field would not be considered.",
+            "schema": {
+              "type": "integer",
+              "description": "This field is obsolete, the value of this field would not be considered.",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set.",
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 0,
+              "pattern": "^[\\s\\S]*$",
+              "type": "string",
+              "description": "Expression to filter the result set.",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfJobHistory"
+                },
+                "example": {
+  "values": [
+    {
+      "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+      "jobId": {
+        "scope": "JobScope",
+        "code": "JobCode"
+      },
+      "name": "Job name",
+      "startDate": "2019-12-11T00:00:00.0000000+00:00",
+      "endDate": "2019-12-11T00:06:12.0000000+00:00",
+      "arguments": {
+        "exchangeCode": "XLON"
+      },
+      "environmentVariables": {
+        "secret1": "{secret:/Scheduler/Secrets/secret1}"
+      },
+      "jobStatus": "Succeeded",
+      "jobResult": "Data load",
+      "description": "Data load",
+      "scheduleId": {
+        "scope": "JobScope",
+        "code": "JobCode"
+      },
+      "resultUrl": "http://exampleUri",
+      "manuallyTriggeredBy": "UserId",
+      "command": "sh",
+      "message": "All jobs have completed successfully"
+    }
+  ],
+  "links": []
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/history/{runId}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] GetRunHistory: Get the history for a single job run",
+        "operationId": "GetRunHistory",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "The unique ID of the run",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string",
+              "description": "The unique ID of the run",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRunResult"
+                },
+                "example": {
+  "consoleOutputUrl": "https://test.lusid.com/scheduler2/api/jobs/history/1dab8d80-5fea-4b14-a6b9-b845cc2c1901/console",
+  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Job name",
+  "startDate": "2019-12-11T00:00:00.0000000+00:00",
+  "endDate": "2019-12-11T00:06:12.0000000+00:00",
+  "arguments": {
+    "exchangeCode": "XLON"
+  },
+  "environmentVariables": {
+    "secret1": "{secret:/Scheduler/Secrets/secret1}"
+  },
+  "jobStatus": "Succeeded",
+  "jobResult": "Data load",
+  "description": "Data load",
+  "scheduleId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "resultUrl": "http://exampleUri",
+  "manuallyTriggeredBy": "UserId",
+  "command": "sh",
+  "message": "All jobs have completed successfully"
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/history/{runId}/console": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] GetJobConsoleOutput: Gets the console output of a specific job run",
+        "operationId": "GetJobConsoleOutput",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "The RunId of the job run",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string",
+              "description": "The RunId of the job run",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/{scope}/{code}": {
+      "put": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] UpdateJob: Update a JobDefinition",
+        "operationId": "UpdateJob",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRequest"
+              },
+              "example": {
+  "name": "Updated job name",
+  "author": "Job author",
+  "description": "Updated job description",
+  "imageName": "Updated image name",
+  "imageTag": "Updated image tag",
+  "command": "echo update;",
+  "ttl": 250,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "updatedSecret": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    },
+    "updatedArgument": {
+      "dataType": "String",
+      "required": true,
+      "description": "Command line argument",
+      "order": 2,
+      "constraints": "None",
+      "passedAs": "CommandLine",
+      "defaultValue": "Update default value"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRequest"
+              },
+              "example": {
+  "name": "Updated job name",
+  "author": "Job author",
+  "description": "Updated job description",
+  "imageName": "Updated image name",
+  "imageTag": "Updated image tag",
+  "command": "echo update;",
+  "ttl": 250,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "updatedSecret": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    },
+    "updatedArgument": {
+      "dataType": "String",
+      "required": true,
+      "description": "Command line argument",
+      "order": 2,
+      "constraints": "None",
+      "passedAs": "CommandLine",
+      "defaultValue": "Update default value"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRequest"
+              },
+              "example": {
+  "name": "Updated job name",
+  "author": "Job author",
+  "description": "Updated job description",
+  "imageName": "Updated image name",
+  "imageTag": "Updated image tag",
+  "command": "echo update;",
+  "ttl": 250,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "updatedSecret": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    },
+    "updatedArgument": {
+      "dataType": "String",
+      "required": true,
+      "description": "Command line argument",
+      "order": 2,
+      "constraints": "None",
+      "passedAs": "CommandLine",
+      "defaultValue": "Update default value"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRequest"
+              },
+              "example": {
+  "name": "Updated job name",
+  "author": "Job author",
+  "description": "Updated job description",
+  "imageName": "Updated image name",
+  "imageTag": "Updated image tag",
+  "command": "echo update;",
+  "ttl": 250,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "updatedSecret": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    },
+    "updatedArgument": {
+      "dataType": "String",
+      "required": true,
+      "description": "Command line argument",
+      "order": 2,
+      "constraints": "None",
+      "passedAs": "CommandLine",
+      "defaultValue": "Update default value"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDefinition"
+                },
+                "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Data loader",
+  "author": "Job author",
+  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
+  "description": "Load EOD data",
+  "dockerImage": "alpine:latest",
+  "command": "echo ExampleCommand;",
+  "ttl": 500,
+  "minCpu": "2",
+  "maxCpu": "4",
+  "minMemory": "0.5Mi",
+  "maxMemory": "500Mi",
+  "argumentDefinitions": {
+    "secreT1": {
+      "dataType": "SecureString",
+      "required": true,
+      "description": "Database credentials",
+      "order": 1,
+      "constraints": "None",
+      "passedAs": "EnvironmentVariable"
+    }
+  },
+  "commandLineArgumentSeparator": " ",
+  "requiredResources": {
+    "lusidApis": [
+      "Shrine, IBOR"
+    ],
+    "lusidFileSystem": [],
+    "externalCalls": [
+      "AWS"
+    ]
+  }
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "delete": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] DeleteJob: Delete a job",
+        "operationId": "DeleteJob",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The scope of the job"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The code of the job"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfScheduleDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/{scope}/{code}/$run": {
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] RunJob: Run a job immediately",
+        "operationId": "RunJob",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The scope of the job"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The code of the job"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request for starting job",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartJobRequest"
+              },
+              "example": {
+  "arguments": {
+    "exchangeCode": "XLON"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "Team A"
+      ]
+    }
+  ]
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartJobRequest"
+              },
+              "example": {
+  "arguments": {
+    "exchangeCode": "XLON"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "Team A"
+      ]
+    }
+  ]
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartJobRequest"
+              },
+              "example": {
+  "arguments": {
+    "exchangeCode": "XLON"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "Team A"
+      ]
+    }
+  ]
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartJobRequest"
+              },
+              "example": {
+  "arguments": {
+    "exchangeCode": "XLON"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "Team A"
+      ]
+    }
+  ]
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartJobResponse"
+                },
+                "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+  "status": "TestStatus",
+  "result": "TestResult"
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/jobs/{scope}/{code}/schedules": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "[EXPERIMENTAL] GetSchedulesForAJob: Get all the schedules for a single job",
+        "operationId": "GetSchedulesForAJob",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The scope of the job"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the job",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The code of the job"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfScheduleDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/metadata/access/resources": {
+      "get": {
+        "tags": [
+          "Application Metadata"
+        ],
+        "summary": "[EXPERIMENTAL] ListAccessControlledResources: Get resources available for access control",
+        "description": "Get the comprehensive set of resources that are available for access control",
+        "operationId": "ListAccessControlledResources",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/schedules": {
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] ListSchedules: List the available Schedules",
+        "operationId": "ListSchedules",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
+              "type": "string",
+              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "When paginating, skip this number of results.",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 0,
+              "type": "integer",
+              "description": "When paginating, skip this number of results.",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified",
+              "format": "int32",
+              "default": 2000,
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set.",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 0,
+              "type": "string",
+              "description": "Expression to filter the result set.",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfScheduleDefinition"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfScheduleDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfScheduleDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "post": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] CreateSchedule: Create a Schedule for a job",
+        "operationId": "CreateSchedule",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequest"
+              },
+              "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequest"
+              },
+              "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequest"
+              },
+              "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequest"
+              },
+              "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The newly created schedule",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/schedules/{scope}/{code}": {
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] GetSchedule: Get a single Schedule",
+        "operationId": "GetSchedule",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of Schedule",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The scope of Schedule"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the Schedule",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The code of the Schedule"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "put": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] UpdateSchedule: Update a schedule.",
+        "operationId": "UpdateSchedule",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "Scope of the schedule to be updated",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Scope of the schedule to be updated"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code of the schedule to be updated",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Code of the schedule to be updated"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated schedule",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "UpdatedSchedule",
+  "description": "Updated description",
+  "author": "Updated author",
+  "owner": "Updated owner",
+  "arguments": {
+    "updatedArgument": "Updated value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "UpdatedSchedule",
+  "description": "Updated description",
+  "author": "Updated author",
+  "owner": "Updated owner",
+  "arguments": {
+    "updatedArgument": "Updated value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "UpdatedSchedule",
+  "description": "Updated description",
+  "author": "Updated author",
+  "owner": "Updated owner",
+  "arguments": {
+    "updatedArgument": "Updated value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequest"
+              },
+              "example": {
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "UpdatedSchedule",
+  "description": "Updated description",
+  "author": "Updated author",
+  "owner": "Updated owner",
+  "arguments": {
+    "updatedArgument": "Updated value"
+  },
+  "trigger": {
+    "bucketWatcherTrigger": {
+      "file": "FileName",
+      "pollPeriod": 5,
+      "bucket": "fbn-ci-schedulertest"
+    }
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "delete": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] DeleteSchedule: Delete a schedule",
+        "operationId": "DeleteSchedule",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "Scope of the schedule to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Scope of the schedule to be deleted"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code of the schedule to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Code of the schedule to be deleted"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/schedules/{scope}/{code}/$run": {
+      "post": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] RunSchedule: Run a schedule immediately",
+        "operationId": "RunSchedule",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The schedule scope",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The schedule scope"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The schedule cde",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The schedule cde"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartScheduleResponse"
+                },
+                "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+  "status": "Pending",
+  "result": "Example result"
+}
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartScheduleResponse"
+                },
+                "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+  "status": "Pending",
+  "result": "Example result"
+}
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartScheduleResponse"
+                },
+                "example": {
+  "scheduleId": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
+  "status": "Pending",
+  "result": "Example result"
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/schedules/{scope}/{code}/enabled": {
+      "put": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "[EXPERIMENTAL] EnabledSchedule: Enable/disable a schedule",
+        "operationId": "EnabledSchedule",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "Scope of the schedule to be enabled/disabled",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Scope of the schedule to be enabled/disabled"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code of the schedule to be enabled/disabled",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Code of the schedule to be enabled/disabled"
+            }
+          },
+          {
+            "name": "enable",
+            "in": "query",
+            "description": "Specify whether to enable or disable the schedule",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "description": "Specify whether to enable or disable the schedule"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDefinition"
+                },
+                "example": {
+  "scheduleIdentifier": {
+    "scope": "ScheduleScope",
+    "code": "ScheduleCode"
+  },
+  "jobId": {
+    "scope": "JobScope",
+    "code": "JobCode"
+  },
+  "name": "Schedule name",
+  "description": "Schedule description",
+  "author": "Schedule author",
+  "owner": "Schedule owner",
+  "arguments": {
+    "argument": "Argument value"
+  },
+  "notifications": [
+    {
+      "fireOn": "Completed",
+      "transport": "Email",
+      "destination": [
+        "destination"
+      ]
+    },
+    {
+      "fireOn": "Failed",
+      "transport": "SMS",
+      "destination": [
+        "destination1",
+        "destination2"
+      ]
+    }
+  ],
+  "enabled": true
+}
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessControlledAction": {
+        "required": [
+          "action",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ActionId"
+          },
+          "limitedSet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdSelectorDefinition"
+            },
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccessControlledResource": {
+        "required": [
+          "actions",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "application": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessControlledAction"
+            }
+          },
+          "identifierParts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentifierPartSchema"
+            },
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActionId": {
+        "required": [
+          "activity",
+          "entity",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string"
+          },
+          "activity": {
+            "maxLength": 25,
+            "minLength": 3,
+            "type": "string"
+          },
+          "entity": {
+            "maxLength": 25,
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ArgumentDefinition": {
+        "required": [
+          "dataType",
+          "description",
+          "order",
+          "passedAs"
+        ],
+        "type": "object",
+        "properties": {
+          "dataType": {
+            "type": "string",
+            "description": "Data type of the argument"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Optionality of the argument"
+          },
+          "description": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "description": "Argument description"
+          },
+          "order": {
+            "type": "integer",
+            "description": "The order of the argument",
+            "format": "int32"
+          },
+          "constraints": {
+            "type": "string",
+            "description": "Constrains of the argument value",
+            "nullable": true
+          },
+          "passedAs": {
+            "type": "string",
+            "description": "Specifies how this argument should be passed in\r\nAllowed values are: CommandLine or EnvironmentVariable\r\n\r\nDefaults to: CommandLine"
+          },
+          "defaultValue": {
+            "type": "string",
+            "description": "Specify a default value for this argument if no value is provided\r\nThe value needs to be convertible to the associated data type",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job argument definition"
+      },
+      "BucketWatcherTrigger": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "The file name or partial path of the file that will trigger the job\r\nE.G: `fileName` or `folder1/folder2/someFileName`",
+            "nullable": true
+          },
+          "pollPeriod": {
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The frequency, in seconds, at which to poll the S3 bucket for the file.\r\nDefaults to 5.",
+            "format": "int32"
+          },
+          "bucket": {
+            "type": "string",
+            "description": "The S3 bucket where to watch for the trigger file",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Trigger based on activity from an S3 bucket"
+      },
+      "CombinedTrigger": {
+        "required": [
+          "bucket",
+          "daysAvailable",
+          "endOfTimeWindowOption",
+          "endTime",
+          "file",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "The start of the time window when a file can arrive to trigger the schedule\r\nCannot exceed 24 hours",
+            "format": "date-span"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end of the time window when a file can arrive to trigger the schedule\r\nMust be after the Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.StartTime and cannot exceed 24 hours",
+            "format": "date-span"
+          },
+          "file": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "The file name or partial path of the file that will trigger the job\r\nE.G: `fileName` or `folder1/folder2/someFileName`"
+          },
+          "pollPeriod": {
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The frequency, in seconds, at which to poll the S3 bucket for the file.\r\nMust be lower than the difference in seconds between Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.EndTime and Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.StartTime\r\nDefaults to 5.",
+            "format": "int32"
+          },
+          "bucket": {
+            "type": "string",
+            "description": "The S3 bucket where to watch for the trigger file"
+          },
+          "triggerEveryFile": {
+            "type": "boolean",
+            "description": "Specify whether to trigger every time the file is updated"
+          },
+          "endOfTimeWindowOption": {
+            "type": "string",
+            "description": "Specifies the behaviour of the trigger when the time window ends\r\nAvailable options are \"Always\", \"NoFile\", \"FileReceived\", \"Never\"\r\nFinbourne.Scheduler.WebApi.Dtos.CombinedTrigger.EndOfTimeWindowOption"
+          },
+          "daysAvailable": {
+            "$ref": "#/components/schemas/DaysOfWeek"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A file based triggered constrained by a time window\r\nSupports the ability to specify multiple trigger files,\r\nto choose whether a schedule is triggered for every file or first file,\r\nhas the option to trigger the schedule at the end of the time window, if any or no files arrived"
+      },
+      "CreateJobRequest": {
+        "required": [
+          "argumentDefinitions",
+          "description",
+          "imageName",
+          "imageTag",
+          "jobId",
+          "name",
+          "requiredResources"
+        ],
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name of the job"
+          },
+          "author": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Author of the job",
+            "nullable": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Date when job was created. Defaults to now.",
+            "format": "date-time"
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string",
+            "description": "Description of this job"
+          },
+          "imageName": {
+            "type": "string",
+            "description": "The name of the Docker image that contains this job"
+          },
+          "imageTag": {
+            "maxLength": 128,
+            "minLength": 0,
+            "type": "string",
+            "description": "The tag of the Docker image that contains this job"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command for running this job",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Time To Live of the job run in seconds\r\nDefaults to 5 minutes(300)",
+            "format": "int32"
+          },
+          "minCpu": {
+            "type": "string",
+            "description": "Specifies  minimum number of CPUs to be allocated for the job\r\nDefault to 2",
+            "nullable": true
+          },
+          "maxCpu": {
+            "type": "string",
+            "description": "Specifies  maximum number of CPUs to be allocated for the job",
+            "nullable": true
+          },
+          "minMemory": {
+            "type": "string",
+            "description": "Specifies the minimum amount of memory  to be allocated for the job",
+            "nullable": true
+          },
+          "maxMemory": {
+            "type": "string",
+            "description": "Specifies the maximum amount of memory to be allocated for the job",
+            "nullable": true
+          },
+          "argumentDefinitions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ArgumentDefinition"
+            },
+            "description": "All arguments for this job to run"
+          },
+          "commandLineArgumentSeparator": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string",
+            "description": "Value to separate command line arguments\r\ne.g : If a job has a command line argument named 'folder' and the runtime value is 's3://path' then this\r\nwould be supplied to the command as 'folder{separatorValue}s3://path'\r\nDefault to a space",
+            "nullable": true
+          },
+          "requiredResources": {
+            "$ref": "#/components/schemas/RequiredResources"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Definition of a job"
+      },
+      "CreateScheduleRequest": {
+        "required": [
+          "description",
+          "jobId",
+          "name",
+          "notifications",
+          "scheduleId"
+        ],
+        "type": "object",
+        "properties": {
+          "scheduleId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "A display name for this Schedule"
+          },
+          "description": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "A description of the Schedule"
+          },
+          "author": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Name of the author of this schedule",
+            "nullable": true
+          },
+          "owner": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Name of owner of this schedule",
+            "nullable": true
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All arguments specified by this Schedule that will be passed in to the Job",
+            "nullable": true
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/Trigger"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "Notifications for this Schedule"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Specify whether schedule is enabled or not\r\nDefaults to true"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Create a schedule definition"
+      },
+      "DaysOfWeek": {
+        "enum": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "type": "string",
+        "description": "Days of the week"
+      },
+      "IdentifierPartSchema": {
+        "required": [
+          "description",
+          "displayName",
+          "index",
+          "name",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdSelectorDefinition": {
+        "required": [
+          "actions",
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "minLength": 1,
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "actions": {
+            "minLength": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionId"
+            }
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the image",
+            "nullable": true
+          },
+          "pushTime": {
+            "type": "string",
+            "description": "The push time of the image",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pullTime": {
+            "type": "string",
+            "description": "The latest pull time of the image",
+            "format": "date-time",
+            "nullable": true
+          },
+          "digest": {
+            "type": "string",
+            "description": "The digest of the image",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the image (in bytes)",
+            "format": "int64",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            },
+            "description": "The tags of the image",
+            "nullable": true
+          },
+          "scanReport": {
+            "$ref": "#/components/schemas/ScanReport"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the metadata of an image"
+      },
+      "ImageSummary": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the image",
+            "nullable": true
+          },
+          "pushTime": {
+            "type": "string",
+            "description": "The push time of the image",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pullTime": {
+            "type": "string",
+            "description": "The latest pull time of the image",
+            "format": "date-time",
+            "nullable": true
+          },
+          "digest": {
+            "type": "string",
+            "description": "The digest of the image",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the image (in bytes)",
+            "format": "int64",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            },
+            "description": "The tags of the image",
+            "nullable": true
+          },
+          "scanStatus": {
+            "type": "string",
+            "description": "The Scan Status of the stated image",
+            "nullable": true
+          },
+          "scanSummary": {
+            "$ref": "#/components/schemas/ScanSummary"
+          },
+          "link": {
+            "$ref": "#/components/schemas/Link"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the metadata of an image"
+      },
+      "JobDefinition": {
+        "required": [
+          "jobId",
+          "requiredResources"
+        ],
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the job",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "description": "Author of the job",
+            "nullable": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Date when job was created",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this job",
+            "nullable": true
+          },
+          "dockerImage": {
+            "type": "string",
+            "description": "Information about the docker image in the format “image_source/image_name:image_tag”",
+            "nullable": true
+          },
+          "command": {
+            "type": "string",
+            "description": "The command for running this job",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Time To Live of the job run in seconds\r\nDefaults to 5 minutes(300)",
+            "format": "int32"
+          },
+          "minCpu": {
+            "type": "string",
+            "description": "Specifies  minimum number of CPUs to be allocated for the job\r\nDefault to 2",
+            "nullable": true
+          },
+          "maxCpu": {
+            "type": "string",
+            "description": "Specifies  maximum number of CPUs to be allocated for the job",
+            "nullable": true
+          },
+          "minMemory": {
+            "type": "string",
+            "description": "Specifies the minimum amount of memory (in GiB) to be allocated for the job",
+            "nullable": true
+          },
+          "maxMemory": {
+            "type": "string",
+            "description": "Specifies the maximum amount of memory (in GiB) to be allocated for the job",
+            "nullable": true
+          },
+          "argumentDefinitions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ArgumentDefinition"
+            },
+            "description": "All arguments for this job to run",
+            "nullable": true
+          },
+          "commandLineArgumentSeparator": {
+            "type": "string",
+            "description": "Value to separate command line arguments\r\ne.g : If a job has a command line argument named 'folder' and the runtime value is 's3://path' then this\r\nwould be supplied to the command as 'folder{separatorValue}s3://path'\r\nDefault to a space",
+            "nullable": true
+          },
+          "requiredResources": {
+            "$ref": "#/components/schemas/RequiredResources"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Definition of a job"
+      },
+      "JobHistory": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string",
+            "description": "Unique id of the job run",
+            "nullable": true
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the job",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start date of the job\r\nDefaults to null if the job has not started yet ( is in a pending status )",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End date of the job\r\nDefaults to null if the job has not started or not completed yet\r\nIf value is null and job has not started, status will be `Pending`\r\nIf value is null and job has not completed, but is running, status will be `Running`",
+            "format": "date-time",
+            "nullable": true
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All arguments used in in this job run",
+            "nullable": true
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All environment variables used in this job run",
+            "nullable": true
+          },
+          "jobStatus": {
+            "type": "string",
+            "description": "Current job status",
+            "nullable": true
+          },
+          "jobResult": {
+            "type": "string",
+            "description": "Description of the job result",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the job",
+            "nullable": true
+          },
+          "scheduleId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "resultUrl": {
+            "type": "string",
+            "description": "URI to results. Defaults to null if not available",
+            "format": "uri",
+            "nullable": true
+          },
+          "manuallyTriggeredBy": {
+            "type": "string",
+            "description": "UserId of the user that triggered the job.\r\nDefaults to null if job was ran on a Schedule",
+            "nullable": true
+          },
+          "command": {
+            "type": "string",
+            "description": "The command used to run the job",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Output message generated by the job runner\r\nValue will be null when the job is in a `Running` or `Pending` status",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job run history"
+      },
+      "JobRunResult": {
+        "type": "object",
+        "properties": {
+          "consoleOutputUrl": {
+            "type": "string",
+            "description": "The URL for the console output of the job run",
+            "nullable": true
+          },
+          "runId": {
+            "type": "string",
+            "description": "Unique id of the job run",
+            "nullable": true
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the job",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start date of the job\r\nDefaults to null if the job has not started yet ( is in a pending status )",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End date of the job\r\nDefaults to null if the job has not started or not completed yet\r\nIf value is null and job has not started, status will be `Pending`\r\nIf value is null and job has not completed, but is running, status will be `Running`",
+            "format": "date-time",
+            "nullable": true
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All arguments used in in this job run",
+            "nullable": true
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All environment variables used in this job run",
+            "nullable": true
+          },
+          "jobStatus": {
+            "type": "string",
+            "description": "Current job status",
+            "nullable": true
+          },
+          "jobResult": {
+            "type": "string",
+            "description": "Description of the job result",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the job",
+            "nullable": true
+          },
+          "scheduleId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "resultUrl": {
+            "type": "string",
+            "description": "URI to results. Defaults to null if not available",
+            "format": "uri",
+            "nullable": true
+          },
+          "manuallyTriggeredBy": {
+            "type": "string",
+            "description": "UserId of the user that triggered the job.\r\nDefaults to null if job was ran on a Schedule",
+            "nullable": true
+          },
+          "command": {
+            "type": "string",
+            "description": "The command used to run the job",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Output message generated by the job runner\r\nValue will be null when the job is in a `Running` or `Pending` status",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represent a specific job's run"
+      },
+      "Link": {
+        "required": [
+          "href",
+          "method",
+          "relation"
+        ],
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LusidProblemDetails": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "errorDetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LusidValidationProblemDetails": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "errorDetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "fireOn": {
+            "type": "string",
+            "description": "Condition for the notification",
+            "nullable": true,
+            "readOnly": true
+          },
+          "transport": {
+            "type": "string",
+            "description": "The type of the notification",
+            "nullable": true
+          },
+          "destination": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Where the notification should be sent",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Notification type"
+      },
+      "Repository": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The identifier of the repository",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "description": "Date of  repository creation",
+            "format": "date-time"
+          },
+          "lastUpdate": {
+            "type": "string",
+            "description": "The last update of the repository",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the repository",
+            "nullable": true
+          },
+          "pullCount": {
+            "type": "integer",
+            "description": "Number of times images were pulled from this repository",
+            "format": "int64"
+          },
+          "imageCount": {
+            "type": "integer",
+            "description": "The number of versions of this image",
+            "format": "int64"
+          },
+          "images": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An object representation of a repository"
+      },
+      "RequiredResources": {
+        "type": "object",
+        "properties": {
+          "lusidApis": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of LUSID APIs the job needs access to",
+            "nullable": true
+          },
+          "lusidFileSystem": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of S3 bucket or folder names that the job can access",
+            "nullable": true
+          },
+          "externalCalls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "External URLs that the job can call",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information related to a jobs required access to resources"
+      },
+      "ResourceId": {
+        "required": [
+          "code",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Scope of the resource"
+          },
+          "code": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Code of the resource"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Resource Id"
+      },
+      "ResourceListOfAccessControlledResource": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessControlledResource"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfImageSummary": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageSummary"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfJobDefinition": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobDefinition"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfJobHistory": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobHistory"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfRepository": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Repository"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfScheduleDefinition": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleDefinition"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScanReport": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "description": "The overall severity. For example : \"High\" or \"None\"",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the report",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "description": "The start time of the scanning process",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end time of the scanning process",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scanDuration": {
+            "type": "integer",
+            "description": "The duration of the scan in seconds",
+            "format": "int32",
+            "nullable": true
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ScanSummary"
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vulnerability"
+            },
+            "description": "List of Finbourne.Scheduler.WebApi.Dtos.Harbor.Vulnerability",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details of a security scan of an image"
+      },
+      "ScanSummary": {
+        "type": "object",
+        "properties": {
+          "fixable": {
+            "type": "integer",
+            "description": "The number of vulnerabilities that have a known fix",
+            "format": "int32",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "description": "The total number of vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "critical": {
+            "type": "integer",
+            "description": "The number of Critical severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "high": {
+            "type": "integer",
+            "description": "The number of High severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "medium": {
+            "type": "integer",
+            "description": "The number of Medium severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "low": {
+            "type": "integer",
+            "description": "The number of Low severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "negligible": {
+            "type": "integer",
+            "description": "The number of Negligible severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          },
+          "unknown": {
+            "type": "integer",
+            "description": "The number of Unknown severity vulnerabilities",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "ScheduleDefinition": {
+        "required": [
+          "scheduleIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "scheduleIdentifier": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "type": "string",
+            "description": "A display name for this Schedule",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the Schedule",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "description": "Name of the author of this schedule",
+            "nullable": true
+          },
+          "owner": {
+            "type": "string",
+            "description": "Name of owner of this schedule",
+            "nullable": true
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All arguments specified by this Schedule that will be passed in to the Job",
+            "nullable": true
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/Trigger"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "Notifications for this Schedule",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "The status of this schedule"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Schedule"
+      },
+      "StartJobRequest": {
+        "type": "object",
+        "properties": {
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All arguments needed for the Job to run",
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "Notifications for this Job",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job start definition"
+      },
+      "StartJobResponse": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "runId": {
+            "type": "string",
+            "description": "Unique RunId of the started job run",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Link to the status of the started job",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "description": "Link to the result of the job run when completed",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response from starting a job"
+      },
+      "StartScheduleResponse": {
+        "type": "object",
+        "properties": {
+          "scheduleId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "runId": {
+            "type": "string",
+            "description": "Unique RunId of the started schedule",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the started schedule",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "description": "Link to the result of the job run when completed",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response from a manual run of a schedule"
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the tag",
+            "nullable": true
+          },
+          "pullTime": {
+            "type": "string",
+            "description": "The latest pull time",
+            "format": "date-time"
+          },
+          "pushTime": {
+            "type": "string",
+            "description": "The date of the tag's push",
+            "format": "date-time"
+          },
+          "signed": {
+            "type": "boolean",
+            "description": "Indicates whether the tag is signed"
+          },
+          "immutable": {
+            "type": "boolean",
+            "description": "Indicates whether the tag is immutable"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents data of an image's tag"
+      },
+      "TimeTrigger": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cron expression",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Time-based trigger"
+      },
+      "Trigger": {
+        "type": "object",
+        "properties": {
+          "bucketWatcherTrigger": {
+            "$ref": "#/components/schemas/BucketWatcherTrigger"
+          },
+          "timeTrigger": {
+            "$ref": "#/components/schemas/TimeTrigger"
+          },
+          "combinedTrigger": {
+            "$ref": "#/components/schemas/CombinedTrigger"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Holds different kinds of triggers\r\nA schedule may only have one type of trigger"
+      },
+      "UpdateJobRequest": {
+        "required": [
+          "argumentDefinitions",
+          "description",
+          "imageName",
+          "imageTag",
+          "name",
+          "requiredResources"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name of the job"
+          },
+          "author": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Author of the job",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string",
+            "description": "Description of this job"
+          },
+          "imageName": {
+            "type": "string",
+            "description": "The name of the Docker image that contains this job"
+          },
+          "imageTag": {
+            "maxLength": 128,
+            "minLength": 0,
+            "type": "string",
+            "description": "The tag of the Docker image that contains this job"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command for running this job",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Time To Live of the job run in seconds\r\nDefaults to 5 minutes(300)",
+            "format": "int32"
+          },
+          "minCpu": {
+            "type": "string",
+            "description": "Specifies  minimum number of CPUs to be allocated for the job\r\nDefault to 2",
+            "nullable": true
+          },
+          "maxCpu": {
+            "type": "string",
+            "description": "Specifies  maximum number of CPUs to be allocated for the job",
+            "nullable": true
+          },
+          "minMemory": {
+            "type": "string",
+            "description": "Specifies the minimum amount of memory  to be allocated for the job",
+            "nullable": true
+          },
+          "maxMemory": {
+            "type": "string",
+            "description": "Specifies the maximum amount of memory to be allocated for the job",
+            "nullable": true
+          },
+          "argumentDefinitions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ArgumentDefinition"
+            },
+            "description": "All arguments for this job to run"
+          },
+          "commandLineArgumentSeparator": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string",
+            "description": "Value to separate command line arguments\r\ne.g : If a job has a command line argument named 'folder' and the runtime value is 's3://path' then this\r\nwould be supplied to the command as 'folder{separatorValue}s3://path'\r\nDefault to a space",
+            "nullable": true
+          },
+          "requiredResources": {
+            "$ref": "#/components/schemas/RequiredResources"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to update a job"
+      },
+      "UpdateScheduleRequest": {
+        "required": [
+          "description",
+          "jobId",
+          "name",
+          "notifications"
+        ],
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "The updated name of the schedule"
+          },
+          "description": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "The updated description of the schedule"
+          },
+          "author": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "The updated author of the schedule",
+            "nullable": true
+          },
+          "owner": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "The update owner of the schedule",
+            "nullable": true
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Updated arguments to be passed to the job\r\nNote: The new arguments will completely replace old arguments",
+            "nullable": true
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/Trigger"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "Updated notifications for this schedule"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Specify whether schedule is enabled or not\r\nDefaults to true"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Create a schedule definition"
+      },
+      "UploadImageInstructions": {
+        "required": [
+          "buildVersionedDockerImageCommand",
+          "dockerLoginCommand",
+          "pushVersionedDockerImageCommand",
+          "tagVersionedDockerImageCommand"
+        ],
+        "type": "object",
+        "properties": {
+          "dockerLoginCommand": {
+            "type": "string"
+          },
+          "buildVersionedDockerImageCommand": {
+            "type": "string"
+          },
+          "tagVersionedDockerImageCommand": {
+            "type": "string"
+          },
+          "pushVersionedDockerImageCommand": {
+            "type": "string"
+          },
+          "tagLatestDockerImageCommand": {
+            "type": "string",
+            "nullable": true
+          },
+          "pushLatestDockerImageCommand": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "UploadImageRequest": {
+        "required": [
+          "imageName"
+        ],
+        "type": "object",
+        "properties": {
+          "imageName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*:[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*$",
+            "type": "string",
+            "description": "Name of the image to be uploaded"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request to upload image for Scheduler use"
+      },
+      "Vulnerability": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the vulnerability",
+            "nullable": true
+          },
+          "package": {
+            "type": "string",
+            "description": "The package that contains the vulnerability",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "The version of the package",
+            "nullable": true
+          },
+          "fixVersion": {
+            "type": "string",
+            "description": "The version that has a fix for the vulnerability (if known)",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "description": "The severity of the vulnerability",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the vulnerability",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Relevant links for the vulnerability",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details of a Finbourne.Scheduler.WebApi.Dtos.Harbor.Vulnerability"
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "OAuth2 Implicit Grant",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://lusid.okta.com/oauth2/default/v1/authorize",
+            "scopes": { }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    { }
+  ],
+  "tags": [
+    {
+      "name": "Application Metadata",
+      "description": "Metadata about the Scheduler application"
+    },
+    {
+      "name": "Images",
+      "description": "Methods for interacting with Schedules"
+    },
+    {
+      "name": "Jobs",
+      "description": "Methods for interacting with Jobs"
+    },
+    {
+      "name": "Schedules",
+      "description": "Methods for interacting with Schedules"
+    }
+  ],
+  "x-tagGroups": {
+    "name": "API",
+    "tags": [
+      "Application Metadata",
+      "Images",
+      "Jobs",
+      "Schedules"
+    ]
+  }
+}
