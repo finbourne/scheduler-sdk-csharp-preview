@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.494",
+    "version": "0.0.574",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1129,6 +1129,7 @@
         "code": "JobCode"
       },
       "name": "Job name",
+      "initialisedDate": "2019-12-10T23:59:50.0000000+00:00",
       "startDate": "2019-12-11T00:00:00.0000000+00:00",
       "endDate": "2019-12-11T00:06:12.0000000+00:00",
       "arguments": {
@@ -1223,6 +1224,7 @@
     "code": "JobCode"
   },
   "name": "Job name",
+  "initialisedDate": "2019-12-11T00:00:10.0000000+00:00",
   "startDate": "2019-12-11T00:00:00.0000000+00:00",
   "endDate": "2019-12-11T00:06:12.0000000+00:00",
   "arguments": {
@@ -3694,14 +3696,16 @@
             "$ref": "#/components/schemas/ResourceId"
           },
           "name": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Name of the job"
           },
           "author": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Author of the job",
             "nullable": true
@@ -3712,8 +3716,9 @@
             "format": "date-time"
           },
           "description": {
-            "maxLength": 250,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Description of this job"
           },
@@ -3795,27 +3800,31 @@
             "$ref": "#/components/schemas/ResourceId"
           },
           "name": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "A display name for this Schedule"
           },
           "description": {
-            "maxLength": 256,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "A description of the Schedule"
           },
           "author": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Name of the author of this schedule",
             "nullable": true
           },
           "owner": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Name of owner of this schedule",
             "nullable": true
@@ -4132,9 +4141,14 @@
             "description": "Name of the job",
             "nullable": true
           },
+          "initialisedDate": {
+            "type": "string",
+            "description": "The date when the job was initialised",
+            "format": "date-time"
+          },
           "startDate": {
             "type": "string",
-            "description": "Start date of the job\r\nDefaults to null if the job has not started yet ( is in a pending status )",
+            "description": "The date when the job started running in Scheduler",
             "format": "date-time",
             "nullable": true
           },
@@ -4225,9 +4239,14 @@
             "description": "Name of the job",
             "nullable": true
           },
+          "initialisedDate": {
+            "type": "string",
+            "description": "The date when the job was initialised",
+            "format": "date-time"
+          },
           "startDate": {
             "type": "string",
-            "description": "Start date of the job\r\nDefaults to null if the job has not started yet ( is in a pending status )",
+            "description": "The date when the job started running in Scheduler",
             "format": "date-time",
             "nullable": true
           },
@@ -4558,14 +4577,16 @@
         "type": "object",
         "properties": {
           "scope": {
-            "maxLength": 50,
+            "maxLength": 64,
             "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "Scope of the resource"
           },
           "code": {
-            "maxLength": 50,
+            "maxLength": 64,
             "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "Code of the resource"
           }
@@ -5091,21 +5112,24 @@
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Name of the job"
           },
           "author": {
-            "maxLength": 50,
-            "minLength": 1,
+            "maxLength": 512,
+            "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Author of the job",
             "nullable": true
           },
           "description": {
-            "maxLength": 250,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Description of this job"
           },
@@ -5183,27 +5207,31 @@
             "$ref": "#/components/schemas/ResourceId"
           },
           "name": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The updated name of the schedule"
           },
           "description": {
-            "maxLength": 256,
+            "maxLength": 512,
             "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The updated description of the schedule"
           },
           "author": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The updated author of the schedule",
             "nullable": true
           },
           "owner": {
-            "maxLength": 50,
+            "maxLength": 512,
             "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The update owner of the schedule",
             "nullable": true
