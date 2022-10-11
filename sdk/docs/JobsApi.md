@@ -194,7 +194,7 @@ namespace Example
             var page = page_example;  // string | The pagination token to use to continue listing instruments from a previous call to list instruments.              This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields              must not have changed since the original request. Also, if set, a start value cannot be provided. (optional) 
             var sortBy = new List<string>(); // List<string> | Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName. (optional) 
             var start = 56;  // int? | This field is obsolete, the value of this field would not be considered. (optional) 
-            var limit = 56;  // int? | When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified (optional) 
+            var limit = 56;  // int? | When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. (optional) 
             var filter = filter_example;  // string | Expression to filter the result set. (optional) 
 
             try
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
  **page** | **string**| The pagination token to use to continue listing instruments from a previous call to list instruments.              This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields              must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
  **sortBy** | [**List&lt;string&gt;**](string.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int?**| This field is obsolete, the value of this field would not be considered. | [optional] 
- **limit** | **int?**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified | [optional] 
+ **limit** | **int?**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] 
  **filter** | **string**| Expression to filter the result set. | [optional] 
 
 ### Return type
@@ -500,7 +500,7 @@ namespace Example
             var page = page_example;  // string | The pagination token to use to continue listing instruments from a previous call to list instruments.              This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields              must not have changed since the original request. Also, if set, a start value cannot be provided. (optional) 
             var sortBy = new List<string>(); // List<string> | Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName. (optional) 
             var start = 56;  // int? | When paginating, skip this number of results. (optional) 
-            var limit = 56;  // int? | When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified (optional)  (default to 2000)
+            var limit = 56;  // int? | When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. (optional)  (default to 2000)
             var filter = filter_example;  // string | Expression to filter the result set. (optional) 
 
             try
@@ -527,7 +527,7 @@ Name | Type | Description  | Notes
  **page** | **string**| The pagination token to use to continue listing instruments from a previous call to list instruments.              This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields              must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
  **sortBy** | [**List&lt;string&gt;**](string.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int?**| When paginating, skip this number of results. | [optional] 
- **limit** | **int?**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified | [optional] [default to 2000]
+ **limit** | **int?**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] [default to 2000]
  **filter** | **string**| Expression to filter the result set. | [optional] 
 
 ### Return type
