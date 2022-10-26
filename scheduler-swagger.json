@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.641",
+    "version": "0.0.646",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -5078,6 +5078,13 @@
             "minLength": 1,
             "type": "string",
             "description": "Cron expression",
+            "nullable": true
+          },
+          "timeZone": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Time zone of the Cron expression. If not provided, defaults to UTC",
             "nullable": true
           }
         },
