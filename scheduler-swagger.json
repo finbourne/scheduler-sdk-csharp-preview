@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.655",
+    "version": "0.0.657",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2154,10 +2154,9 @@
     "argument": "Argument value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2201,10 +2200,9 @@
     "argument": "Argument value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2248,10 +2246,9 @@
     "argument": "Argument value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2295,10 +2292,9 @@
     "argument": "Argument value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2348,6 +2344,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2388,6 +2390,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2427,6 +2435,12 @@
   "owner": "Schedule owner",
   "arguments": {
     "argument": "Argument value"
+  },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
   },
   "notifications": [
     {
@@ -2542,6 +2556,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2582,6 +2602,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2621,6 +2647,12 @@
   "owner": "Schedule owner",
   "arguments": {
     "argument": "Argument value"
+  },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
   },
   "notifications": [
     {
@@ -2730,10 +2762,9 @@
     "updatedArgument": "Updated value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2773,10 +2804,9 @@
     "updatedArgument": "Updated value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2816,10 +2846,9 @@
     "updatedArgument": "Updated value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2859,10 +2888,9 @@
     "updatedArgument": "Updated value"
   },
   "trigger": {
-    "bucketWatcherTrigger": {
-      "file": "FileName",
-      "pollPeriod": 5,
-      "bucket": "fbn-ci-schedulertest"
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
     }
   },
   "notifications": [
@@ -2912,6 +2940,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2952,6 +2986,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -2991,6 +3031,12 @@
   "owner": "Schedule owner",
   "arguments": {
     "argument": "Argument value"
+  },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
   },
   "notifications": [
     {
@@ -3314,6 +3360,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -3354,6 +3406,12 @@
   "arguments": {
     "argument": "Argument value"
   },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
+  },
   "notifications": [
     {
       "fireOn": "Completed",
@@ -3393,6 +3451,12 @@
   "owner": "Schedule owner",
   "arguments": {
     "argument": "Argument value"
+  },
+  "trigger": {
+    "timeTrigger": {
+      "expression": "0 0 5 ? * 3",
+      "timeZone": "UTC"
+    }
   },
   "notifications": [
     {
@@ -3601,85 +3665,6 @@
         "additionalProperties": false,
         "description": "Job argument definition"
       },
-      "BucketWatcherTrigger": {
-        "type": "object",
-        "properties": {
-          "file": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string",
-            "description": "The file name or partial path of the file that will trigger the job\r\nE.G: `fileName` or `folder1/folder2/someFileName`",
-            "nullable": true
-          },
-          "pollPeriod": {
-            "maximum": 86400,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The frequency, in seconds, at which to poll the S3 bucket for the file.\r\nDefaults to 5.",
-            "format": "int32"
-          },
-          "bucket": {
-            "type": "string",
-            "description": "The S3 bucket where to watch for the trigger file",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Trigger based on activity from an S3 bucket"
-      },
-      "CombinedTrigger": {
-        "required": [
-          "bucket",
-          "daysAvailable",
-          "endOfTimeWindowOption",
-          "endTime",
-          "file",
-          "startTime"
-        ],
-        "type": "object",
-        "properties": {
-          "startTime": {
-            "type": "string",
-            "description": "The start of the time window when a file can arrive to trigger the schedule\r\nCannot exceed 24 hours",
-            "format": "date-span"
-          },
-          "endTime": {
-            "type": "string",
-            "description": "The end of the time window when a file can arrive to trigger the schedule\r\nMust be after the Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.StartTime and cannot exceed 24 hours",
-            "format": "date-span"
-          },
-          "file": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string",
-            "description": "The file name or partial path of the file that will trigger the job\r\nE.G: `fileName` or `folder1/folder2/someFileName`"
-          },
-          "pollPeriod": {
-            "maximum": 86400,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The frequency, in seconds, at which to poll the S3 bucket for the file.\r\nMust be lower than the difference in seconds between Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.EndTime and Finbourne.Scheduler.WebApi.Dtos.CombinedTrigger.StartTime\r\nDefaults to 5.",
-            "format": "int32"
-          },
-          "bucket": {
-            "type": "string",
-            "description": "The S3 bucket where to watch for the trigger file"
-          },
-          "triggerEveryFile": {
-            "type": "boolean",
-            "description": "Specify whether to trigger every time the file is updated"
-          },
-          "endOfTimeWindowOption": {
-            "type": "string",
-            "description": "Specifies the behaviour of the trigger when the time window ends\r\nAvailable options are \"Always\", \"NoFile\", \"FileReceived\", \"Never\"\r\nFinbourne.Scheduler.WebApi.Dtos.CombinedTrigger.EndOfTimeWindowOption"
-          },
-          "daysAvailable": {
-            "$ref": "#/components/schemas/DaysOfWeek"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A file based triggered constrained by a time window\r\nSupports the ability to specify multiple trigger files,\r\nto choose whether a schedule is triggered for every file or first file,\r\nhas the option to trigger the schedule at the end of the time window, if any or no files arrived"
-      },
       "CreateJobRequest": {
         "required": [
           "argumentDefinitions",
@@ -3854,19 +3839,6 @@
         },
         "additionalProperties": false,
         "description": "Create a schedule definition"
-      },
-      "DaysOfWeek": {
-        "enum": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "type": "string",
-        "description": "Days of the week"
       },
       "IdentifierPartSchema": {
         "required": [
@@ -5094,14 +5066,8 @@
       "Trigger": {
         "type": "object",
         "properties": {
-          "bucketWatcherTrigger": {
-            "$ref": "#/components/schemas/BucketWatcherTrigger"
-          },
           "timeTrigger": {
             "$ref": "#/components/schemas/TimeTrigger"
-          },
-          "combinedTrigger": {
-            "$ref": "#/components/schemas/CombinedTrigger"
           }
         },
         "additionalProperties": false,
