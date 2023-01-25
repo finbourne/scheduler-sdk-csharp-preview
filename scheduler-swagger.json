@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.740",
+    "version": "0.0.744",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -26,7 +26,7 @@
           "Images"
         ],
         "summary": "[EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs",
-        "description": "Every image must have at least one tag",
+        "description": "Every image must have at least one tag. Note: your image will not be available until the returned Docker commands are executed.",
         "operationId": "UploadImage",
         "requestBody": {
           "description": "Request to upload image",
@@ -35,33 +35,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UploadImageRequest"
               },
-              "example": {
-  "imageName": "example-image-name:0.0.1"
-}
+              "example": {"imageName":"example-image-name:0.0.1"}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UploadImageRequest"
               },
-              "example": {
-  "imageName": "example-image-name:0.0.1"
-}
+              "example": {"imageName":"example-image-name:0.0.1"}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UploadImageRequest"
               },
-              "example": {
-  "imageName": "example-image-name:0.0.1"
-}
+              "example": {"imageName":"example-image-name:0.0.1"}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UploadImageRequest"
               },
-              "example": {
-  "imageName": "example-image-name:0.0.1"
-}
+              "example": {"imageName":"example-image-name:0.0.1"}
             }
           },
           "required": true
@@ -122,9 +114,7 @@
               "maxLength": 500,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
-              "type": "string",
-              "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -135,9 +125,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
-              "nullable": true
+              }
             },
             "x-nullable": true
           },
@@ -149,9 +137,7 @@
               "maximum": 5000,
               "minimum": 0,
               "type": "integer",
-              "description": "When paginating, skip this number of results.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -163,10 +149,8 @@
               "maximum": 5000,
               "minimum": 1,
               "type": "integer",
-              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000.",
               "format": "int32",
-              "default": 2000,
-              "nullable": true
+              "default": 2000
             },
             "x-nullable": true
           },
@@ -177,9 +161,7 @@
             "schema": {
               "maxLength": 1024,
               "minLength": 0,
-              "type": "string",
-              "description": "Expression to filter the result set.",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -191,32 +173,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/ResourceListOfRepository"
                 },
-                "example": {
-  "values": [
-    {
-      "name": "ExampleName",
-      "creationTime": "2013-02-01T12:34:21.0000000+00:00",
-      "lastUpdate": "0001-01-01T00:00:00.0000000+00:00",
-      "pullCount": 6631,
-      "imageCount": 34,
-      "images": {
-        "relation": "images",
-        "href": "api/images/repository/ExampleName",
-        "description": "Get all image versions",
-        "method": "GET"
-      },
-      "links": [
-        {
-          "relation": "images",
-          "href": "api/images/repository/ExampleName",
-          "description": "Get all image versions",
-          "method": "GET"
-        }
-      ]
-    }
-  ],
-  "links": []
-}
+                "example": {"values":[{"name":"ExampleName","creationTime":"2013-02-01T12:34:21.0000000+00:00","lastUpdate":"0001-01-01T00:00:00.0000000+00:00","pullCount":6631,"imageCount":34,"images":{"relation":"images","href":"api/images/repository/ExampleName","description":"Get all image versions","method":"GET"},"links":[{"relation":"images","href":"api/images/repository/ExampleName","description":"Get all image versions","method":"GET"}]}],"links":[]}
               }
             }
           },
@@ -263,9 +220,7 @@
             "description": "The name of the Repository",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The name of the Repository",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -276,9 +231,7 @@
               "maxLength": 500,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
-              "type": "string",
-              "description": "The pagination token to use to continue listing images from a previous call to list images.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -289,9 +242,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
-              "nullable": true
+              }
             },
             "x-nullable": true
           },
@@ -303,9 +254,7 @@
               "maximum": 5000,
               "minimum": 0,
               "type": "integer",
-              "description": "When paginating, skip this number of results.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -317,10 +266,8 @@
               "maximum": 5000,
               "minimum": 1,
               "type": "integer",
-              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000.",
               "format": "int32",
-              "default": 2000,
-              "nullable": true
+              "default": 2000
             },
             "x-nullable": true
           },
@@ -331,9 +278,7 @@
             "schema": {
               "maxLength": 1024,
               "minLength": 0,
-              "type": "string",
-              "description": "Expression to filter the result set.",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -345,44 +290,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/ResourceListOfImageSummary"
                 },
-                "example": {
-  "values": [
-    {
-      "name": "ExampleName",
-      "pushTime": "2020-09-12T12:34:12.0000000+00:00",
-      "pullTime": "2020-09-12T12:45:15.0000000+00:00",
-      "digest": "sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff",
-      "size": 56825012,
-      "tags": [
-        {
-          "name": "latest",
-          "pullTime": "0001-01-01T00:00:00.0000000+00:00",
-          "pushTime": "0001-01-01T00:00:00.0000000+00:00",
-          "signed": false,
-          "immutable": false
-        },
-        {
-          "name": "0.61",
-          "pullTime": "0001-01-01T00:00:00.0000000+00:00",
-          "pushTime": "0001-01-01T00:00:00.0000000+00:00",
-          "signed": false,
-          "immutable": false
-        }
-      ],
-      "scanSummary": {
-        "fixable": 1,
-        "total": 1,
-        "critical": 0,
-        "high": 1,
-        "medium": 0,
-        "low": 0,
-        "negligible": 0,
-        "unknown": 0
-      }
-    }
-  ],
-  "links": []
-}
+                "example": {"values":[{"name":"ExampleName","pushTime":"2020-09-12T12:34:12.0000000+00:00","pullTime":"2020-09-12T12:45:15.0000000+00:00","digest":"sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff","size":56825012,"tags":[{"name":"latest","pullTime":"0001-01-01T00:00:00.0000000+00:00","pushTime":"0001-01-01T00:00:00.0000000+00:00","signed":false,"immutable":false},{"name":"0.61","pullTime":"0001-01-01T00:00:00.0000000+00:00","pushTime":"0001-01-01T00:00:00.0000000+00:00","signed":false,"immutable":false}],"scanSummary":{"fixable":1,"total":1,"critical":0,"high":1,"medium":0,"low":0,"negligible":0,"unknown":0}}],"links":[]}
               }
             }
           },
@@ -432,8 +340,7 @@
               "maxLength": 256,
               "minLength": 1,
               "pattern": "^[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*:[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*$",
-              "type": "string",
-              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest,0.1,0.2\""
+              "type": "string"
             }
           }
         ],
@@ -502,8 +409,7 @@
               "maxLength": 256,
               "minLength": 1,
               "pattern": "^[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*:[a-z\\d]+((([.]{1}|[_]{1,2}|[-])+)([a-z\\d]+))*$",
-              "type": "string",
-              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\""
+              "type": "string"
             }
           }
         ],
@@ -515,59 +421,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Image"
                 },
-                "example": {
-  "name": "ExampleName",
-  "pushTime": "2020-09-12T12:34:12.0000000+00:00",
-  "pullTime": "2020-09-12T12:45:15.0000000+00:00",
-  "digest": "sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff",
-  "size": 56825012,
-  "tags": [
-    {
-      "name": "latest",
-      "pullTime": "0001-01-01T00:00:00.0000000+00:00",
-      "pushTime": "0001-01-01T00:00:00.0000000+00:00",
-      "signed": false,
-      "immutable": false
-    },
-    {
-      "name": "0.61",
-      "pullTime": "0001-01-01T00:00:00.0000000+00:00",
-      "pushTime": "0001-01-01T00:00:00.0000000+00:00",
-      "signed": false,
-      "immutable": false
-    }
-  ],
-  "scanReport": {
-    "severity": "Critical",
-    "status": "Success",
-    "startTime": "2020-09-13T02:24:12.0000000+00:00",
-    "endTime": "2020-09-13T02:24:42.0000000+00:00",
-    "scanDuration": 30,
-    "summary": {
-      "fixable": 1,
-      "total": 1,
-      "critical": 0,
-      "high": 1,
-      "medium": 0,
-      "low": 0,
-      "negligible": 0,
-      "unknown": 0
-    },
-    "vulnerabilities": [
-      {
-        "name": "CVE-2012-113462",
-        "package": "libdin",
-        "version": "1.33-1",
-        "fixVersion": "1.33-2",
-        "severity": "High",
-        "description": "There is an overflow bug",
-        "links": [
-          "https://security-tracking-website.com"
-        ]
-      }
-    ]
-  }
-}
+                "example": {"name":"ExampleName","pushTime":"2020-09-12T12:34:12.0000000+00:00","pullTime":"2020-09-12T12:45:15.0000000+00:00","digest":"sha256:b1365a9ada7eab7c6a42c90c112c7634ff7356a6b8a2148647dcbb56cdd982ff","size":56825012,"tags":[{"name":"latest","pullTime":"0001-01-01T00:00:00.0000000+00:00","pushTime":"0001-01-01T00:00:00.0000000+00:00","signed":false,"immutable":false},{"name":"0.61","pullTime":"0001-01-01T00:00:00.0000000+00:00","pushTime":"0001-01-01T00:00:00.0000000+00:00","signed":false,"immutable":false}],"scanReport":{"severity":"Critical","status":"Success","startTime":"2020-09-13T02:24:12.0000000+00:00","endTime":"2020-09-13T02:24:42.0000000+00:00","scanDuration":30,"summary":{"fixable":1,"total":1,"critical":0,"high":1,"medium":0,"low":0,"negligible":0,"unknown":0},"vulnerabilities":[{"name":"CVE-2012-113462","package":"libdin","version":"1.33-1","fixVersion":"1.33-2","severity":"High","description":"There is an overflow bug","links":["https://security-tracking-website.com"]}]}}
               }
             }
           },
@@ -614,8 +468,7 @@
             "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\"",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\""
+              "type": "string"
             }
           }
         ],
@@ -676,9 +529,7 @@
               "maxLength": 500,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
-              "type": "string",
-              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -689,9 +540,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
-              "nullable": true
+              }
             },
             "x-nullable": true
           },
@@ -703,9 +552,7 @@
               "maximum": 5000,
               "minimum": 0,
               "type": "integer",
-              "description": "When paginating, skip this number of results.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -717,10 +564,8 @@
               "maximum": 5000,
               "minimum": 1,
               "type": "integer",
-              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000.",
               "format": "int32",
-              "default": 2000,
-              "nullable": true
+              "default": 2000
             },
             "x-nullable": true
           },
@@ -731,9 +576,7 @@
             "schema": {
               "maxLength": 1024,
               "minLength": 0,
-              "type": "string",
-              "description": "Expression to filter the result set.",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -789,173 +632,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "imageName": "alpine",
-  "imageTag": "latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "imageName": "alpine",
-  "imageTag": "latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "imageName": "alpine",
-  "imageTag": "latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "imageName": "alpine",
-  "imageTag": "latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             }
           },
           "required": true
@@ -968,43 +663,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobDefinition"
                 },
-                "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "dockerImage": "alpine:latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
               }
             }
           },
@@ -1053,9 +712,7 @@
               "maxLength": 500,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
-              "type": "string",
-              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -1066,9 +723,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
-              "nullable": true
+              }
             },
             "x-nullable": true
           },
@@ -1078,9 +733,7 @@
             "description": "This field is obsolete, the value of this field would not be considered.",
             "schema": {
               "type": "integer",
-              "description": "This field is obsolete, the value of this field would not be considered.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -1092,9 +745,7 @@
               "maximum": 5000,
               "minimum": 1,
               "type": "integer",
-              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -1106,9 +757,7 @@
               "maxLength": 16384,
               "minLength": 0,
               "pattern": "^[\\s\\S]*$",
-              "type": "string",
-              "description": "Expression to filter the result set.",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -1120,39 +769,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/ResourceListOfJobHistory"
                 },
-                "example": {
-  "values": [
-    {
-      "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-      "jobId": {
-        "scope": "JobScope",
-        "code": "JobCode"
-      },
-      "name": "Job name",
-      "initialisedDate": "2019-12-10T23:59:50.0000000+00:00",
-      "startDate": "2019-12-11T00:00:00.0000000+00:00",
-      "endDate": "2019-12-11T00:06:12.0000000+00:00",
-      "arguments": {
-        "exchangeCode": "XLON"
-      },
-      "environmentVariables": {
-        "secret1": "{secret:/Scheduler/Secrets/secret1}"
-      },
-      "jobStatus": "Succeeded",
-      "jobResult": "Data load",
-      "description": "Data load",
-      "scheduleId": {
-        "scope": "JobScope",
-        "code": "JobCode"
-      },
-      "resultUrl": "http://exampleUri",
-      "manuallyTriggeredBy": "UserId",
-      "command": "sh",
-      "message": "All jobs have completed successfully"
-    }
-  ],
-  "links": []
-}
+                "example": {"values":[{"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-10T23:59:50.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","command":"sh","message":"All jobs have completed successfully"}],"links":[]}
               }
             }
           },
@@ -1202,9 +819,7 @@
               "maxLength": 36,
               "minLength": 0,
               "pattern": "^[a-zA-Z0-9\\-]+$",
-              "type": "string",
-              "description": "The unique ID of the run",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -1216,35 +831,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobRunResult"
                 },
-                "example": {
-  "consoleOutputUrl": "https://test.lusid.com/scheduler2/api/jobs/history/1dab8d80-5fea-4b14-a6b9-b845cc2c1901/console",
-  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Job name",
-  "initialisedDate": "2019-12-11T00:00:10.0000000+00:00",
-  "startDate": "2019-12-11T00:00:00.0000000+00:00",
-  "endDate": "2019-12-11T00:06:12.0000000+00:00",
-  "arguments": {
-    "exchangeCode": "XLON"
-  },
-  "environmentVariables": {
-    "secret1": "{secret:/Scheduler/Secrets/secret1}"
-  },
-  "jobStatus": "Succeeded",
-  "jobResult": "Data load",
-  "description": "Data load",
-  "scheduleId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "resultUrl": "http://exampleUri",
-  "manuallyTriggeredBy": "UserId",
-  "command": "sh",
-  "message": "All jobs have completed successfully"
-}
+                "example": {"consoleOutputUrl":"https://test.lusid.com/scheduler2/api/jobs/history/1dab8d80-5fea-4b14-a6b9-b845cc2c1901/console","runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-11T00:00:10.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","command":"sh","message":"All jobs have completed successfully"}
               }
             }
           },
@@ -1294,9 +881,7 @@
               "maxLength": 36,
               "minLength": 0,
               "pattern": "^[a-zA-Z0-9\\-]+$",
-              "type": "string",
-              "description": "The RunId of the job run",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -1381,189 +966,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {
-  "name": "Updated job name",
-  "author": "Job author",
-  "description": "Updated job description",
-  "imageName": "Updated image name",
-  "imageTag": "Updated image tag",
-  "command": "echo update;",
-  "ttl": 250,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "updatedSecret": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    },
-    "updatedArgument": {
-      "dataType": "String",
-      "required": true,
-      "description": "Command line argument",
-      "order": 2,
-      "constraints": "None",
-      "passedAs": "CommandLine",
-      "defaultValue": "Update default value"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {
-  "name": "Updated job name",
-  "author": "Job author",
-  "description": "Updated job description",
-  "imageName": "Updated image name",
-  "imageTag": "Updated image tag",
-  "command": "echo update;",
-  "ttl": 250,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "updatedSecret": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    },
-    "updatedArgument": {
-      "dataType": "String",
-      "required": true,
-      "description": "Command line argument",
-      "order": 2,
-      "constraints": "None",
-      "passedAs": "CommandLine",
-      "defaultValue": "Update default value"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {
-  "name": "Updated job name",
-  "author": "Job author",
-  "description": "Updated job description",
-  "imageName": "Updated image name",
-  "imageTag": "Updated image tag",
-  "command": "echo update;",
-  "ttl": 250,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "updatedSecret": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    },
-    "updatedArgument": {
-      "dataType": "String",
-      "required": true,
-      "description": "Command line argument",
-      "order": 2,
-      "constraints": "None",
-      "passedAs": "CommandLine",
-      "defaultValue": "Update default value"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {
-  "name": "Updated job name",
-  "author": "Job author",
-  "description": "Updated job description",
-  "imageName": "Updated image name",
-  "imageTag": "Updated image tag",
-  "command": "echo update;",
-  "ttl": 250,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "updatedSecret": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    },
-    "updatedArgument": {
-      "dataType": "String",
-      "required": true,
-      "description": "Command line argument",
-      "order": 2,
-      "constraints": "None",
-      "passedAs": "CommandLine",
-      "defaultValue": "Update default value"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             }
           },
           "required": true
@@ -1576,43 +997,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobDefinition"
                 },
-                "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Data loader",
-  "author": "Job author",
-  "dateCreated": "2019-12-11T00:00:00.0000000+00:00",
-  "description": "Load EOD data",
-  "dockerImage": "alpine:latest",
-  "command": "echo ExampleCommand;",
-  "ttl": 500,
-  "minCpu": "2",
-  "maxCpu": "4",
-  "minMemory": "0.5Mi",
-  "maxMemory": "500Mi",
-  "argumentDefinitions": {
-    "secreT1": {
-      "dataType": "SecureString",
-      "required": true,
-      "description": "Database credentials",
-      "order": 1,
-      "constraints": "None",
-      "passedAs": "EnvironmentVariable"
-    }
-  },
-  "commandLineArgumentSeparator": " ",
-  "requiredResources": {
-    "lusidApis": [
-      "Shrine, IBOR"
-    ],
-    "lusidFileSystem": [],
-    "externalCalls": [
-      "AWS"
-    ]
-  }
-}
+                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
               }
             }
           },
@@ -1657,8 +1042,7 @@
             "description": "The scope of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The scope of the job"
+              "type": "string"
             }
           },
           {
@@ -1667,8 +1051,7 @@
             "description": "The code of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The code of the job"
+              "type": "string"
             }
           }
         ],
@@ -1726,8 +1109,7 @@
             "description": "The scope of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The scope of the job"
+              "type": "string"
             }
           },
           {
@@ -1736,8 +1118,7 @@
             "description": "The code of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The code of the job"
+              "type": "string"
             }
           }
         ],
@@ -1748,98 +1129,38 @@
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {
-  "arguments": {
-    "exchangeCode": "XLON"
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "Team A"
-      ]
-    }
-  ]
-}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {
-  "arguments": {
-    "exchangeCode": "XLON"
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "Team A"
-      ]
-    }
-  ]
-}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {
-  "arguments": {
-    "exchangeCode": "XLON"
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "Team A"
-      ]
-    }
-  ]
-}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {
-  "arguments": {
-    "exchangeCode": "XLON"
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "Team A"
-      ]
-    }
-  ]
-}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
             }
           },
           "required": true
         },
         "responses": {
           "202": {
-            "description": "Success",
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StartJobResponse"
                 },
-                "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-  "status": "TestStatus",
-  "result": "TestResult"
-}
+                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","status":"TestStatus","result":"TestResult"}
               }
             }
           },
@@ -1886,8 +1207,7 @@
             "description": "The scope of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The scope of the job"
+              "type": "string"
             }
           },
           {
@@ -1896,8 +1216,7 @@
             "description": "The code of the job",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The code of the job"
+              "type": "string"
             }
           }
         ],
@@ -2005,9 +1324,7 @@
               "maxLength": 500,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\+/]*={0,3}$",
-              "type": "string",
-              "description": "The pagination token to use to continue listing instruments from a previous call to list instruments.\r\n            This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields\r\n            must not have changed since the original request. Also, if set, a start value cannot be provided.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -2018,9 +1335,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.",
-              "nullable": true
+              }
             },
             "x-nullable": true
           },
@@ -2032,9 +1347,7 @@
               "maximum": 5000,
               "minimum": 0,
               "type": "integer",
-              "description": "When paginating, skip this number of results.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-nullable": true
           },
@@ -2046,10 +1359,8 @@
               "maximum": 5000,
               "minimum": 1,
               "type": "integer",
-              "description": "When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000.",
               "format": "int32",
-              "default": 2000,
-              "nullable": true
+              "default": 2000
             },
             "x-nullable": true
           },
@@ -2060,9 +1371,7 @@
             "schema": {
               "maxLength": 1024,
               "minLength": 0,
-              "type": "string",
-              "description": "Expression to filter the result set.",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -2137,185 +1446,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             }
           },
           "required": true
@@ -2328,139 +1477,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -2517,8 +1546,7 @@
             "description": "The scope of Schedule",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The scope of Schedule"
+              "type": "string"
             }
           },
           {
@@ -2527,8 +1555,7 @@
             "description": "The code of the Schedule",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The code of the Schedule"
+              "type": "string"
             }
           }
         ],
@@ -2540,139 +1567,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -2727,8 +1634,7 @@
             "description": "Scope of the schedule to be updated",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Scope of the schedule to be updated"
+              "type": "string"
             }
           },
           {
@@ -2737,8 +1643,7 @@
             "description": "Code of the schedule to be updated",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Code of the schedule to be updated"
+              "type": "string"
             }
           }
         ],
@@ -2749,169 +1654,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "UpdatedSchedule",
-  "description": "Updated description",
-  "author": "Updated author",
-  "owner": "Updated owner",
-  "arguments": {
-    "updatedArgument": "Updated value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "UpdatedSchedule",
-  "description": "Updated description",
-  "author": "Updated author",
-  "owner": "Updated owner",
-  "arguments": {
-    "updatedArgument": "Updated value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "UpdatedSchedule",
-  "description": "Updated description",
-  "author": "Updated author",
-  "owner": "Updated owner",
-  "arguments": {
-    "updatedArgument": "Updated value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "UpdatedSchedule",
-  "description": "Updated description",
-  "author": "Updated author",
-  "owner": "Updated owner",
-  "arguments": {
-    "updatedArgument": "Updated value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
             }
           },
           "required": true
@@ -2924,139 +1685,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -3111,8 +1752,7 @@
             "description": "Scope of the schedule to be deleted",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Scope of the schedule to be deleted"
+              "type": "string"
             }
           },
           {
@@ -3121,14 +1761,13 @@
             "description": "Code of the schedule to be deleted",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Code of the schedule to be deleted"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -3183,8 +1822,7 @@
             "description": "The schedule scope",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The schedule scope"
+              "type": "string"
             }
           },
           {
@@ -3193,68 +1831,31 @@
             "description": "The schedule cde",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "The schedule cde"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "202": {
-            "description": "Success",
+            "description": "Accepted",
             "content": {
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/StartScheduleResponse"
                 },
-                "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-  "status": "Pending",
-  "result": "Example result"
-}
+                "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","status":"Pending","result":"Example result"}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StartScheduleResponse"
                 },
-                "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-  "status": "Pending",
-  "result": "Example result"
-}
+                "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","status":"Pending","result":"Example result"}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StartScheduleResponse"
                 },
-                "example": {
-  "scheduleId": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "runId": "1dab8d80-5fea-4b14-a6b9-b845cc2c1901",
-  "status": "Pending",
-  "result": "Example result"
-}
+                "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","status":"Pending","result":"Example result"}
               }
             }
           },
@@ -3311,8 +1912,7 @@
             "description": "Scope of the schedule to be enabled/disabled",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Scope of the schedule to be enabled/disabled"
+              "type": "string"
             }
           },
           {
@@ -3321,8 +1921,7 @@
             "description": "Code of the schedule to be enabled/disabled",
             "required": true,
             "schema": {
-              "type": "string",
-              "description": "Code of the schedule to be enabled/disabled"
+              "type": "string"
             }
           },
           {
@@ -3331,8 +1930,7 @@
             "description": "Specify whether to enable or disable the schedule",
             "required": true,
             "schema": {
-              "type": "boolean",
-              "description": "Specify whether to enable or disable the schedule"
+              "type": "boolean"
             }
           }
         ],
@@ -3344,139 +1942,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {
-  "scheduleIdentifier": {
-    "scope": "ScheduleScope",
-    "code": "ScheduleCode"
-  },
-  "jobId": {
-    "scope": "JobScope",
-    "code": "JobCode"
-  },
-  "name": "Schedule name",
-  "description": "Schedule description",
-  "author": "Schedule author",
-  "owner": "Schedule owner",
-  "arguments": {
-    "argument": "Argument value"
-  },
-  "trigger": {
-    "timeTrigger": {
-      "expression": "0 0 5 ? * 3",
-      "timeZone": "UTC"
-    }
-  },
-  "notifications": [
-    {
-      "fireOn": "Completed",
-      "transport": "Email",
-      "destination": [
-        "destination"
-      ]
-    },
-    {
-      "fireOn": "Failed",
-      "transport": "SMS",
-      "destination": [
-        "destination1",
-        "destination2"
-      ]
-    }
-  ],
-  "enabled": true
-}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -3530,6 +2008,7 @@
         "type": "object",
         "properties": {
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "action": {
@@ -3568,6 +2047,7 @@
             "nullable": true
           },
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "actions": {
@@ -3629,6 +2109,7 @@
         "type": "object",
         "properties": {
           "dataType": {
+            "minLength": 1,
             "type": "string",
             "description": "Data type of the argument"
           },
@@ -3653,6 +2134,7 @@
             "nullable": true
           },
           "passedAs": {
+            "minLength": 1,
             "type": "string",
             "description": "Specifies how this argument should be passed in\r\nAllowed values are: CommandLine or EnvironmentVariable\r\n\r\nDefaults to: CommandLine"
           },
@@ -3708,6 +2190,7 @@
             "description": "Description of this job"
           },
           "imageName": {
+            "minLength": 1,
             "type": "string",
             "description": "The name of the Docker image that contains this job"
           },
@@ -3817,7 +2300,8 @@
           "arguments": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             },
             "description": "All arguments specified by this Schedule that will be passed in to the Job",
             "nullable": true
@@ -3855,12 +2339,15 @@
             "format": "int32"
           },
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "displayName": {
+            "minLength": 1,
             "type": "string"
           },
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "required": {
@@ -3891,7 +2378,7 @@
             }
           },
           "actions": {
-            "minLength": 1,
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ActionId"
@@ -4321,6 +2808,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "errorDetails": {
@@ -4357,18 +2845,9 @@
           "instance": {
             "type": "string",
             "nullable": true
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            },
-            "nullable": true,
-            "readOnly": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": { }
       },
       "LusidValidationProblemDetails": {
         "required": [
@@ -4378,6 +2857,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "errorDetails": {
@@ -4424,18 +2904,9 @@
           "instance": {
             "type": "string",
             "nullable": true
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            },
-            "nullable": true,
-            "readOnly": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": { }
       },
       "Notification": {
         "type": "object",
@@ -4912,7 +3383,8 @@
           "arguments": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             },
             "description": "All arguments specified by this Schedule that will be passed in to the Job",
             "nullable": true
@@ -4942,7 +3414,8 @@
           "arguments": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             },
             "description": "All arguments needed for the Job to run",
             "nullable": true
@@ -5107,6 +3580,7 @@
             "description": "Description of this job"
           },
           "imageName": {
+            "minLength": 1,
             "type": "string",
             "description": "The name of the Docker image that contains this job"
           },
@@ -5212,7 +3686,8 @@
           "arguments": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             },
             "description": "Updated arguments to be passed to the job\r\nNote: The new arguments will completely replace old arguments",
             "nullable": true
@@ -5245,15 +3720,19 @@
         "type": "object",
         "properties": {
           "dockerLoginCommand": {
+            "minLength": 1,
             "type": "string"
           },
           "buildVersionedDockerImageCommand": {
+            "minLength": 1,
             "type": "string"
           },
           "tagVersionedDockerImageCommand": {
+            "minLength": 1,
             "type": "string"
           },
           "pushVersionedDockerImageCommand": {
+            "minLength": 1,
             "type": "string"
           },
           "tagLatestDockerImageCommand": {

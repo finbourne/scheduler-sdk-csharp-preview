@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs
 
-Every image must have at least one tag
+Every image must have at least one tag. Note: your image will not be available until the returned Docker commands are executed.
 
 ### Example
 ```csharp

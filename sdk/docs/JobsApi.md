@@ -625,7 +625,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **202** | Success |  -  |
+| **202** | Accepted |  -  |
 | **400** | The details of the input related failure |  -  |
 | **0** | Error response |  -  |
 
