@@ -4,19 +4,19 @@ All URIs are relative to *https://www.lusid.com/scheduler2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteImage**](ImagesApi.md#deleteimage) | **DELETE** /api/images/{name} | [EXPERIMENTAL] DeleteImage: Delete an image from Harbor
-[**DownloadImage**](ImagesApi.md#downloadimage) | **GET** /api/images/{name}/contents | [EXPERIMENTAL] DownloadImage: Download the file from Harbor
-[**GetImage**](ImagesApi.md#getimage) | **GET** /api/images/{name} | [EXPERIMENTAL] GetImage: Get an image metadata from Harbor
-[**ListImages**](ImagesApi.md#listimages) | **GET** /api/images/repository/{name} | [EXPERIMENTAL] ListImages: List all images in a Repository
-[**ListRepositories**](ImagesApi.md#listrepositories) | **GET** /api/images/repository | [EXPERIMENTAL] ListRepositories: List all repositories
-[**UploadImage**](ImagesApi.md#uploadimage) | **POST** /api/images | [EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs
+[**DeleteImage**](ImagesApi.md#deleteimage) | **DELETE** /api/images/{name} | [EXPERIMENTAL] DeleteImage: Delete a Docker Image
+[**DownloadImage**](ImagesApi.md#downloadimage) | **GET** /api/images/{name}/contents | [EXPERIMENTAL] DownloadImage: Download Docker Image
+[**GetImage**](ImagesApi.md#getimage) | **GET** /api/images/{name} | [EXPERIMENTAL] GetImage: Get metadata of a Docker Image
+[**ListImages**](ImagesApi.md#listimages) | **GET** /api/images/repository/{name} | [EXPERIMENTAL] ListImages: List all images under same image repository
+[**ListRepositories**](ImagesApi.md#listrepositories) | **GET** /api/images/repository | [EXPERIMENTAL] ListRepositories: List all Docker image repositories
+[**UploadImage**](ImagesApi.md#uploadimage) | **POST** /api/images | [EXPERIMENTAL] UploadImage: Upload a Docker Image used for Scheduler jobs
 
 
 <a name="deleteimage"></a>
 # **DeleteImage**
 > string DeleteImage (string name)
 
-[EXPERIMENTAL] DeleteImage: Delete an image from Harbor
+[EXPERIMENTAL] DeleteImage: Delete a Docker Image
 
 ### Example
 ```csharp
@@ -38,11 +38,11 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ImagesApi(config);
-            var name = name_example;  // string | The name and tag of the image of the image. Format \"ExampleImageName:latest,0.1,0.2\"
+            var name = name_example;  // string | The name and tag of the image. Format \"ExampleImageName:0.1\"
 
             try
             {
-                // [EXPERIMENTAL] DeleteImage: Delete an image from Harbor
+                // [EXPERIMENTAL] DeleteImage: Delete a Docker Image
                 string result = apiInstance.DeleteImage(name);
                 Debug.WriteLine(result);
             }
@@ -61,7 +61,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| The name and tag of the image of the image. Format \&quot;ExampleImageName:latest,0.1,0.2\&quot; | 
+ **name** | **string**| The name and tag of the image. Format \&quot;ExampleImageName:0.1\&quot; | 
 
 ### Return type
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 # **DownloadImage**
 > System.IO.Stream DownloadImage (string name)
 
-[EXPERIMENTAL] DownloadImage: Download the file from Harbor
+[EXPERIMENTAL] DownloadImage: Download Docker Image
 
 ### Example
 ```csharp
@@ -117,7 +117,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] DownloadImage: Download the file from Harbor
+                // [EXPERIMENTAL] DownloadImage: Download Docker Image
                 System.IO.Stream result = apiInstance.DownloadImage(name);
                 Debug.WriteLine(result);
             }
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 # **GetImage**
 > Image GetImage (string name)
 
-[EXPERIMENTAL] GetImage: Get an image metadata from Harbor
+[EXPERIMENTAL] GetImage: Get metadata of a Docker Image
 
 ### Example
 ```csharp
@@ -187,11 +187,11 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ImagesApi(config);
-            var name = name_example;  // string | The name and tag of the image of the image. Format \"ExampleImageName:latest\"
+            var name = name_example;  // string | The name and tag of a Docker image. Format \"ExampleImageName:latest\"
 
             try
             {
-                // [EXPERIMENTAL] GetImage: Get an image metadata from Harbor
+                // [EXPERIMENTAL] GetImage: Get metadata of a Docker Image
                 Image result = apiInstance.GetImage(name);
                 Debug.WriteLine(result);
             }
@@ -210,7 +210,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| The name and tag of the image of the image. Format \&quot;ExampleImageName:latest\&quot; | 
+ **name** | **string**| The name and tag of a Docker image. Format \&quot;ExampleImageName:latest\&quot; | 
 
 ### Return type
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 # **ListImages**
 > ResourceListOfImageSummary ListImages (string name, string page = null, List<string> sortBy = null, int? start = null, int? limit = null, string filter = null)
 
-[EXPERIMENTAL] ListImages: List all images in a Repository
+[EXPERIMENTAL] ListImages: List all images under same image repository
 
 ### Example
 ```csharp
@@ -270,7 +270,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] ListImages: List all images in a Repository
+                // [EXPERIMENTAL] ListImages: List all images under same image repository
                 ResourceListOfImageSummary result = apiInstance.ListImages(name, page, sortBy, start, limit, filter);
                 Debug.WriteLine(result);
             }
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 # **ListRepositories**
 > ResourceListOfRepository ListRepositories (string page = null, List<string> sortBy = null, int? start = null, int? limit = null, string filter = null)
 
-[EXPERIMENTAL] ListRepositories: List all repositories
+[EXPERIMENTAL] ListRepositories: List all Docker image repositories
 
 ### Example
 ```csharp
@@ -353,7 +353,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] ListRepositories: List all repositories
+                // [EXPERIMENTAL] ListRepositories: List all Docker image repositories
                 ResourceListOfRepository result = apiInstance.ListRepositories(page, sortBy, start, limit, filter);
                 Debug.WriteLine(result);
             }
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 # **UploadImage**
 > UploadImageInstructions UploadImage (UploadImageRequest uploadImageRequest)
 
-[EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs
+[EXPERIMENTAL] UploadImage: Upload a Docker Image used for Scheduler jobs
 
 Every image must have at least one tag. Note: your image will not be available until the returned Docker commands are executed.
 
@@ -433,7 +433,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs
+                // [EXPERIMENTAL] UploadImage: Upload a Docker Image used for Scheduler jobs
                 UploadImageInstructions result = apiInstance.UploadImage(uploadImageRequest);
                 Debug.WriteLine(result);
             }

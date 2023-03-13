@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.778",
+    "version": "0.0.779",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -25,7 +25,7 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] UploadImage: Uploads an image to be used for Scheduler jobs",
+        "summary": "[EXPERIMENTAL] UploadImage: Upload a Docker Image used for Scheduler jobs",
         "description": "Every image must have at least one tag. Note: your image will not be available until the returned Docker commands are executed.",
         "operationId": "UploadImage",
         "requestBody": {
@@ -103,7 +103,7 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] ListRepositories: List all repositories",
+        "summary": "[EXPERIMENTAL] ListRepositories: List all Docker image repositories",
         "operationId": "ListRepositories",
         "parameters": [
           {
@@ -211,7 +211,7 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] ListImages: List all images in a Repository",
+        "summary": "[EXPERIMENTAL] ListImages: List all images under same image repository",
         "operationId": "ListImages",
         "parameters": [
           {
@@ -328,13 +328,13 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] DeleteImage: Delete an image from Harbor",
+        "summary": "[EXPERIMENTAL] DeleteImage: Delete a Docker Image",
         "operationId": "DeleteImage",
         "parameters": [
           {
             "name": "name",
             "in": "path",
-            "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest,0.1,0.2\"",
+            "description": "The name and tag of the image. Format \"ExampleImageName:0.1\"",
             "required": true,
             "schema": {
               "maxLength": 256,
@@ -397,13 +397,13 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] GetImage: Get an image metadata from Harbor",
+        "summary": "[EXPERIMENTAL] GetImage: Get metadata of a Docker Image",
         "operationId": "GetImage",
         "parameters": [
           {
             "name": "name",
             "in": "path",
-            "description": "The name and tag of the image of the image. Format \"ExampleImageName:latest\"",
+            "description": "The name and tag of a Docker image. Format \"ExampleImageName:latest\"",
             "required": true,
             "schema": {
               "maxLength": 256,
@@ -459,7 +459,7 @@
         "tags": [
           "Images"
         ],
-        "summary": "[EXPERIMENTAL] DownloadImage: Download the file from Harbor",
+        "summary": "[EXPERIMENTAL] DownloadImage: Download Docker Image",
         "operationId": "DownloadImage",
         "parameters": [
           {
@@ -3286,7 +3286,7 @@
             "items": {
               "$ref": "#/components/schemas/Vulnerability"
             },
-            "description": "List of Finbourne.Scheduler.WebApi.Dtos.Harbor.Vulnerability",
+            "description": "List of Finbourne.Scheduler.WebApi.Dtos.Images.Vulnerability",
             "nullable": true
           }
         },
@@ -3811,7 +3811,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents the details of a Finbourne.Scheduler.WebApi.Dtos.Harbor.Vulnerability"
+        "description": "Represents the details of an image vulnerability"
       }
     },
     "securitySchemes": {
