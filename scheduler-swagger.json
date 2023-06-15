@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.793",
+    "version": "0.0.794",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1446,25 +1446,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateScheduleRequest"
               },
-              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"scheduleId":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             }
           },
           "required": true
@@ -1477,19 +1477,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -1567,19 +1567,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -1654,25 +1654,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateScheduleRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"UpdatedSchedule","description":"Updated description","author":"Updated author","owner":"Updated owner","arguments":{"UpdatedArgument":"Updated value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true,"useAsAuth":"Schedule auth userId"}
             }
           },
           "required": true
@@ -1685,19 +1685,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -1942,19 +1942,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduleDefinition"
                 },
-                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
+                "example": {"scheduleIdentifier":{"scope":"ScheduleScope","code":"ScheduleCode"},"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Schedule name","description":"Schedule description","author":"Schedule author","owner":"Schedule owner","useAsAuth":"Schedule auth userId","arguments":{"Argument":"Argument value"},"trigger":{"timeTrigger":{"expression":"0 0 5 ? * 3","timeZone":"UTC"}},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["destination"]},{"fireOn":"Failed","transport":"SMS","destination":["destination1","destination2"]}],"enabled":true}
               }
             }
           },
@@ -2319,6 +2319,14 @@
           "enabled": {
             "type": "boolean",
             "description": "Specify whether schedule is enabled or not\r\nDefaults to true"
+          },
+          "useAsAuth": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "Id of user associated with schedule. All calls to FINBOURNE services\r\nas part of execution of this schedule will be authenticated as this \r\nuser. Can be null, in which case we'll default to that of the user \r\nmaking this request",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -3380,6 +3388,11 @@
             "description": "Name of owner of this schedule",
             "nullable": true
           },
+          "useAsAuth": {
+            "type": "string",
+            "description": "User to runs schedule when automatically run and authenticates \r\nrequests in the schedule",
+            "nullable": true
+          },
           "arguments": {
             "type": "object",
             "additionalProperties": {
@@ -3705,6 +3718,14 @@
           "enabled": {
             "type": "boolean",
             "description": "Specify whether schedule is enabled or not\r\nDefaults to true"
+          },
+          "useAsAuth": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "Id of user associated with schedule. All calls to FINBOURNE services\r\nas part of execution of this schedule will be authenticated as this \r\nuser. Can be null, in which case we'll default to that of the user \r\nmaking this request",
+            "nullable": true
           }
         },
         "additionalProperties": false,
