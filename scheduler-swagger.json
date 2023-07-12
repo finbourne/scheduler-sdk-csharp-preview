@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.799",
+    "version": "0.0.801",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1129,25 +1129,25 @@
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}],"useAsAuth":"job auth userId"}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}],"useAsAuth":"job auth userId"}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}],"useAsAuth":"job auth userId"}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/StartJobRequest"
               },
-              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}]}
+              "example": {"arguments":{"ExchangeCode":"XLON"},"notifications":[{"fireOn":"Completed","transport":"Email","destination":["Team A"]}],"useAsAuth":"job auth userId"}
             }
           },
           "required": true
@@ -3439,6 +3439,11 @@
               "$ref": "#/components/schemas/Notification"
             },
             "description": "Notifications for this Job",
+            "nullable": true
+          },
+          "useAsAuth": {
+            "type": "string",
+            "description": "Id of user associated with schedule. All calls to FINBOURNE services\r\nas part of execution of this schedule will be authenticated as this \r\nuser. Can be null, in which case we'll default to that of the user \r\nmaking this request",
             "nullable": true
           }
         },
