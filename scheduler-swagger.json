@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.818",
+    "version": "0.0.819",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -632,25 +632,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateJobRequest"
               },
-              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","imageName":"alpine","imageTag":"latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             }
           },
           "required": true
@@ -663,7 +663,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobDefinition"
                 },
-                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
               }
             }
           },
@@ -769,7 +769,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/ResourceListOfJobHistory"
                 },
-                "example": {"values":[{"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-10T23:59:50.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","command":"sh","message":"All jobs have completed successfully"}],"links":[]}
+                "example": {"values":[{"runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-10T23:59:50.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","message":"All jobs have completed successfully"}],"links":[]}
               }
             }
           },
@@ -831,7 +831,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobRunResult"
                 },
-                "example": {"consoleOutputUrl":"https://test.lusid.com/scheduler2/api/jobs/history/1dab8d80-5fea-4b14-a6b9-b845cc2c1901/console","runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-11T00:00:10.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","command":"sh","message":"All jobs have completed successfully"}
+                "example": {"consoleOutputUrl":"https://test.lusid.com/scheduler2/api/jobs/history/1dab8d80-5fea-4b14-a6b9-b845cc2c1901/console","runId":"1dab8d80-5fea-4b14-a6b9-b845cc2c1901","jobId":{"scope":"JobScope","code":"JobCode"},"name":"Job name","initialisedDate":"2019-12-11T00:00:10.0000000+00:00","startDate":"2019-12-11T00:00:00.0000000+00:00","endDate":"2019-12-11T00:06:12.0000000+00:00","arguments":{"ExchangeCode":"XLON"},"environmentVariables":{"Secret1":"{secret:/Scheduler/Secrets/secret1}"},"jobStatus":"Succeeded","jobResult":"Data load","description":"Data load","scheduleId":{"scope":"JobScope","code":"JobCode"},"resultUrl":"http://exampleUri","manuallyTriggeredBy":"UserId","message":"All jobs have completed successfully"}
               }
             }
           },
@@ -966,25 +966,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateJobRequest"
               },
-              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","command":"echo update;","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+              "example": {"name":"Updated job name","author":"Job author","description":"Updated job description","imageName":"Updated image name","imageTag":"Updated image tag","ttl":250,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"UpdatedSecret":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"},"UpdatedArgument":{"dataType":"String","required":true,"description":"Command line argument","order":2,"constraints":"None","passedAs":"CommandLine","defaultValue":"Update default value"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
             }
           },
           "required": true
@@ -997,7 +997,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/JobDefinition"
                 },
-                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","command":"echo ExampleCommand;","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
+                "example": {"jobId":{"scope":"JobScope","code":"JobCode"},"name":"Data loader","author":"Job author","dateCreated":"2019-12-11T00:00:00.0000000+00:00","description":"Load EOD data","dockerImage":"alpine:latest","ttl":500,"minCpu":"2","maxCpu":"4","minMemory":"0.5Mi","maxMemory":"500Mi","argumentDefinitions":{"SECRET1":{"dataType":"SecureString","required":true,"description":"Database credentials","order":1,"constraints":"None","passedAs":"EnvironmentVariable"}},"commandLineArgumentSeparator":" ","requiredResources":{"lusidApis":["Shrine, IBOR"],"lusidFileSystem":[],"externalCalls":["AWS"]}}
               }
             }
           },
@@ -2200,11 +2200,6 @@
             "type": "string",
             "description": "The tag of the Docker image that contains this job"
           },
-          "command": {
-            "type": "string",
-            "description": "The command for running this job",
-            "nullable": true
-          },
           "ttl": {
             "type": "integer",
             "description": "Time To Live of the job run in seconds\r\nDefaults to 5 minutes(300)",
@@ -2542,11 +2537,6 @@
             "description": "Information about the docker image in the format “image_source/image_name:image_tag”",
             "nullable": true
           },
-          "command": {
-            "type": "string",
-            "description": "The command for running this job",
-            "nullable": true
-          },
           "ttl": {
             "type": "integer",
             "description": "Time To Live of the job run in seconds\r\nDefaults to 5 minutes(300)",
@@ -2671,11 +2661,6 @@
             "description": "UserId of the user that triggered the job.\r\nDefaults to null if job was ran on a Schedule",
             "nullable": true
           },
-          "command": {
-            "type": "string",
-            "description": "The command used to run the job",
-            "nullable": true
-          },
           "message": {
             "type": "string",
             "description": "Output message generated by the job runner\r\nValue will be null when the job is in a `Running` or `Pending` status",
@@ -2767,11 +2752,6 @@
           "manuallyTriggeredBy": {
             "type": "string",
             "description": "UserId of the user that triggered the job.\r\nDefaults to null if job was ran on a Schedule",
-            "nullable": true
-          },
-          "command": {
-            "type": "string",
-            "description": "The command used to run the job",
             "nullable": true
           },
           "message": {
@@ -3607,11 +3587,6 @@
             "minLength": 0,
             "type": "string",
             "description": "The tag of the Docker image that contains this job"
-          },
-          "command": {
-            "type": "string",
-            "description": "The command for running this job",
-            "nullable": true
           },
           "ttl": {
             "type": "integer",
