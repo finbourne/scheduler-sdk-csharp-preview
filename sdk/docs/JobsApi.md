@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**GetRunHistory**](JobsApi.md#getrunhistory) | **GET** /api/jobs/history/{runId} | [EXPERIMENTAL] GetRunHistory: Get the history for a single job run
 [**GetSchedulesForAJob**](JobsApi.md#getschedulesforajob) | **GET** /api/jobs/{scope}/{code}/schedules | [EXPERIMENTAL] GetSchedulesForAJob: Get all the schedules for a single job
 [**ListJobs**](JobsApi.md#listjobs) | **GET** /api/jobs | [EXPERIMENTAL] ListJobs: List the available jobs
-[**RunJob**](JobsApi.md#runjob) | **POST** /api/jobs/{scope}/{code}/$run | [EXPERIMENTAL] RunJob: Run a job immediately
+[**RunJob**](JobsApi.md#runjob) | **POST** /api/jobs/{scope}/{code}/$run | RunJob: Run a job immediately
 [**UpdateJob**](JobsApi.md#updatejob) | **PUT** /api/jobs/{scope}/{code} | [EXPERIMENTAL] UpdateJob: Update a JobDefinition
 
 
@@ -557,7 +557,7 @@ Name | Type | Description  | Notes
 # **RunJob**
 > StartJobResponse RunJob (string scope, string code, StartJobRequest startJobRequest)
 
-[EXPERIMENTAL] RunJob: Run a job immediately
+RunJob: Run a job immediately
 
 ### Example
 ```csharp
@@ -585,7 +585,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] RunJob: Run a job immediately
+                // RunJob: Run a job immediately
                 StartJobResponse result = apiInstance.RunJob(scope, code, startJobRequest);
                 Debug.WriteLine(result);
             }

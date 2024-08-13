@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.928",
+    "version": "0.0.929",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1100,7 +1100,7 @@
         "tags": [
           "Jobs"
         ],
-        "summary": "[EXPERIMENTAL] RunJob: Run a job immediately",
+        "summary": "RunJob: Run a job immediately",
         "operationId": "RunJob",
         "parameters": [
           {
@@ -1190,7 +1190,7 @@
             "oauth2": [ ]
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/jobs/{scope}/{code}/schedules": {
